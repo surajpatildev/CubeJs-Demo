@@ -1,7 +1,7 @@
 cube(`Orders`, {
   sql: `SELECT * FROM public.orders`,
   preAggregations: {
-    main: {
+    canceledOrderCount: {
       measures: [Orders.canceledCount, Orders.count],
       dimensions: [OrderPayments.paymentType],
     },
