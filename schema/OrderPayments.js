@@ -11,7 +11,6 @@ cube(`OrderPayments`, {
   measures: {
     count: {
       type: `count`,
-      drillMembers: [orderId],
     },
 
     paymentValue: {
@@ -27,6 +26,7 @@ cube(`OrderPayments`, {
     avgPaymentValue: {
       sql: `payment_value`,
       type: `avg`,
+      title: "Average Order Value",
     },
   },
 

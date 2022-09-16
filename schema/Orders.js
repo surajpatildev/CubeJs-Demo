@@ -1,14 +1,11 @@
 cube(`Orders`, {
   sql: `SELECT * FROM public.orders`,
-
   preAggregations: {
     main: {
-      measures: [Orders.count],
-      timeDimension: Orders.orderPurchaseTimestamp,
-      granularity: `hour`,
+      measures: [Orders.canceledCount, Orders.count],
+      dimensions: [OrderPayments.paymentType],
     },
   },
-
   joins: {
     Customers: {
       sql: `${CUBE}.customer_id = ${Customers}.customer_id`,
@@ -23,13 +20,11 @@ cube(`Orders`, {
       relationship: `hasMany`,
     },
   },
-
   measures: {
     count: {
       type: `count`,
       sql: "order_id",
       drillMembers: [
-        orderId,
         orderStatus,
         orderPurchaseTimestamp,
         OrderPayments.paymentValue,
@@ -51,7 +46,6 @@ cube(`Orders`, {
       format: `percent`,
     },
   },
-
   dimensions: {
     orderId: {
       sql: `order_id`,
