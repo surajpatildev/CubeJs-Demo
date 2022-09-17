@@ -16,10 +16,6 @@ cube(`OrderPayments`, {
       sql: `payment_value`,
       type: `sum`,
     },
-    maxPaymentValue: {
-      sql: `payment_value`,
-      type: `max`,
-    },
     avgPaymentValue: {
       sql: `payment_value`,
       type: `avg`,
